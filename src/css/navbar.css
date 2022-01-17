@@ -1,0 +1,127 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  color: white;
+  padding: 0 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+.navbarNav {
+  padding-top: 2em;
+  list-style: none;
+  text-align: center;
+  position: absolute;
+  top: 65px;
+  width: 80%;
+  height: 15rem;
+  transform: translateX(-10000px);
+  z-index: 10;
+  transition: all 0.3s ease;
+  left: 14%;
+}
+
+.navbarNav.active {
+  transform: translateX(-1rem);
+  background-color: #c02c2c;
+}
+
+.navItem {
+  position: relative;
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.navItem a {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  color: white;
+
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburgerIcon {
+  width: 30px;
+  display: block;
+  background-color: white;
+  height: 3px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hamburgerIcon:after,
+.hamburgerIcon:before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  left: 5px;
+  border-radius: 50px;
+}
+
+.hamburgerIcon:after {
+  bottom: -10px;
+  left: 10px;
+}
+
+.hamburgerIcon:before {
+  bottom: 10px;
+  left: -5px;
+  width: 35px;
+}
+
+.logo {
+  width: 40px;
+}
+
+/************* DESKTOP STYLE **************************/
+@media screen and (min-width: 1025px) {
+  .navbarNav.active {
+    transform: translateX(-1rem);
+    background-color: #e94c4c;
+  }
+  .navbarNav {
+    display: flex;
+    position: initial;
+    width: initial;
+    height: initial;
+    padding-top: 0;
+    transform: none;
+  }
+  /* underline animation is inspired by: https://codepen.io/jstn/pen/zuDst*/
+
+  .navItem a {
+    border: none;
+    display: inline-block;
+    width: 100px;
+  }
+  .navItem:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 25px;
+    position: absolute;
+    transition: all 0.3s linear;
+    bottom: -2px;
+    left: 0;
+  }
+
+  .navItem:hover:after {
+    width: 100%;
+  }
+
+  .hamburgerIcon {
+    display: none;
+  }
+}
