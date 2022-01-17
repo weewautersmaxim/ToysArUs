@@ -159,6 +159,7 @@ h3 {
   color: #2f4c5e;
   padding: 2rem;
   box-sizing: border-box;
+  flex: 1;
 }
 
 .c-details__h4 {

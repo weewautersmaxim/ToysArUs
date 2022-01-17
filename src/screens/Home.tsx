@@ -1,9 +1,26 @@
 // //@ts-nocheck
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as THREE from "three";
 import Navbar from "../components/nav";
+import { ARCanvas, VRCanvas } from "@react-three/xr";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { usePlaneDetection } from "../components/ArLogic";
+import ARButton from "../components/Button";
 
 export default function Home() {
+  const supportsVR = "getVRDisplays" in navigator;
+  const [renderer, setRenderer] = useState<THREE.WebGLRenderer>();
+  const [container, setContainer] = useState<HTMLDivElement>();
+  // console.log((navigator as any).xr.isSessionSupported("immersive-vr"));
+  const {
+    isARSupported,
+    createSessionIfSupported,
+    getRenderer,
+    getARContainer,
+  } = usePlaneDetection;
+  useEffect(() => {
+    (async () => {})();
+  }, []);
   return (
     <main>
       <header className="c-container">
@@ -82,9 +99,10 @@ export default function Home() {
             <p className="c-details__euro">€ 14.98</p>
             <div className="c-buttons">
               <button className="c-buy">Buy product</button>
-              <button className="c-ar">
+              <ARButton />
+              {/* <button className="c-ar">
                 watch in AR <img src="ar.svg" alt="Augmented reality" />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
