@@ -33,6 +33,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://www.maximweewauters.be/",
   "browserslist": {
     "production": [
       ">0.2%",

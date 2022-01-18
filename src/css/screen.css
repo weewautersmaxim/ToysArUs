@@ -125,6 +125,10 @@ h3 {
   width: 50%;
 }
 
+.test {
+  background-color: red;
+}
+
 .c-shop {
   padding-top: 2rem;
   margin: 0 auto;

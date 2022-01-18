@@ -5,8 +5,6 @@ import { ThreeEvent } from "@react-three/fiber";
 import { Object3D } from "three";
 import { create } from "domain";
 
-//@ts-ignore
-// let scene: any = {};
 export const usePlaneDetection = (() => {
   let arSupported;
   let renderer: any = undefined;
@@ -23,8 +21,6 @@ export const usePlaneDetection = (() => {
         let supported = (navigator as any).xr
           .isSessionSupported("immersive-ar")
           .then((supported: any) => {
-            console.log(supported);
-
             arSupported = supported;
             return supported;
           });
@@ -56,7 +52,7 @@ export const usePlaneDetection = (() => {
   const initScene = (model: Object3D) => {
     const container = document.createElement("div");
     arContainer = container;
-    container.classList.toggle("hidden");
+    container.classList.toggle("test");
     document.body.appendChild(container);
     let sc = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera(
@@ -154,8 +150,6 @@ export const usePlaneDetection = (() => {
       }
 
       x.render(scene!, camera);
-      // moveObject();
-      // console.log("run");
     });
     renderer = x;
 
