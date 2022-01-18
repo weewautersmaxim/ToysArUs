@@ -165,6 +165,14 @@ h3 {
   box-sizing: border-box;
   flex: 1;
 }
+.hidden {
+  display: none;
+}
+.hiddenBtn {
+  position: absolute;
+  top: 65px;
+  right: 65px;
+}
 
 .c-details__h4 {
   font-size: 1.6rem;
@@ -204,6 +212,7 @@ h3 {
   border: 2px solid #d5d5d5;
   border-radius: var(--border-radius);
   text-align: center;
+  width: 100%;
 }
 
 @media screen and (max-width: 1025px) {

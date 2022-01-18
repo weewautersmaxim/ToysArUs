@@ -4,6 +4,7 @@ import DragControls from "drag-controls";
 import { ThreeEvent } from "@react-three/fiber";
 import { Object3D } from "three";
 import { create } from "domain";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const usePlaneDetection = (() => {
   let arSupported;
@@ -39,8 +40,6 @@ export const usePlaneDetection = (() => {
   const clearChildren = () => {
     if (scene) {
       scene.children.forEach((child: any) => {
-        console.log(child);
-
         if (child.name !== "reticle") {
           scene!.remove(child);
         }
@@ -74,24 +73,32 @@ export const usePlaneDetection = (() => {
     model.scale.set(0.1, 0.1, 0.1);
     model.userData.name = "model";
     model.userData.dragable = true;
-    // console.log(model);
 
     sc.add(model);
-    const geometry = new THREE.CylinderGeometry(0.1, 0.1, 0.2, 32).translate(
-      0,
-      0.1,
-      0
-    );
+    // const geometry = new THREE.CylinderGeometry(0.1, 5, 0.2, 32).translate(
+    //   0,
+    //   0.1,
+    //   0
+    // );
+    const loader = new GLTFLoader();
+    let customModel;
+    loader.load("test/scene.gltf", (gltf) => {
+      // const mesh = gltf.scene.children[0];
+      customModel = gltf.scene;
+      // reticle.visible = false;
+      gltf.scene.add(customModel);
+      // mesh.add(gltf.scene);
+    });
 
     const onSelect = () => {
       if (reticle.visible) {
         const material = new THREE.MeshPhongMaterial({
           color: 0xffffff * Math.random(),
         });
-        const mesh: THREE.Mesh = new THREE.Mesh(geometry, material);
-        mesh.scale.y = Math.random() * 2 + 1;
-        mesh.position.setFromMatrixPosition(reticle.matrix);
-        scene!.add(mesh);
+
+        customModel.scale.y = Math.random() * 2 + 1;
+        customModel.position.setFromMatrixPosition(reticle.matrix);
+        scene!.add(customModel);
         // scene!.getObjectByName("model");
         // model.position.setFromMatrixPosition(reticle.matrix);
       }
@@ -101,7 +108,7 @@ export const usePlaneDetection = (() => {
     sc.add(controller);
 
     reticle = new THREE.Mesh(
-      new THREE.RingGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2),
+      new THREE.RingGeometry(0.15, 1, 32).rotateX(-Math.PI / 2),
       new THREE.MeshBasicMaterial()
     );
     reticle.matrixAutoUpdate = false;
