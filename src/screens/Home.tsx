@@ -2,6 +2,7 @@ import { isRenderer } from "@react-three/fiber/dist/declarations/src/core/store"
 import React, { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { usePlaneDetection } from "../components/ArLogic";
+import { browserName } from "react-device-detect";
 
 import Navbar from "../components/nav";
 
@@ -27,16 +28,15 @@ export default function Home() {
   const overlay = useRef<HTMLDivElement>(null);
   const {
     createSessionIfSupported,
-    getRenderer,
     getARContainer,
     clearChildren,
   } = usePlaneDetection;
   useEffect(() => {
+    console.log(browserName + " browser");
     if (sessionInit.optionalFeatures === undefined) {
       sessionInit.optionalFeatures = [];
       sessionInit.requiredFeatures = [];
     }
-
     sessionInit.optionalFeatures.push("dom-overlay");
     sessionInit.requiredFeatures.push("hit-test");
     sessionInit.domOverlay = { root: overlay.current! };
@@ -85,6 +85,8 @@ export default function Home() {
   };
   return (
     <main>
+      <div>{browserName}</div>
+
       <header className="c-container">
         <Navbar />
         <section className="c-section">

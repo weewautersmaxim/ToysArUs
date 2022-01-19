@@ -5,6 +5,7 @@ import { ThreeEvent } from "@react-three/fiber";
 import { Object3D } from "three";
 import { create } from "domain";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useLoader } from "@react-three/fiber";
 
 export const usePlaneDetection = (() => {
   let arSupported;
@@ -73,6 +74,7 @@ export const usePlaneDetection = (() => {
     model.scale.set(0.1, 0.1, 0.1);
     model.userData.name = "model";
     model.userData.dragable = true;
+    // console.log(model);
 
     sc.add(model);
     // const geometry = new THREE.CylinderGeometry(0.1, 5, 0.2, 32).translate(
@@ -82,8 +84,8 @@ export const usePlaneDetection = (() => {
     // );
     const loader = new GLTFLoader();
     let customModel;
-    loader.load("test/scene.gltf", (gltf) => {
-      // const mesh = gltf.scene.children[0];
+    loader.load("test2/scene.gltf", (gltf) => {
+      const mesh = gltf.scene.children[0];
       customModel = gltf.scene;
       // reticle.visible = false;
       gltf.scene.add(customModel);
@@ -108,8 +110,8 @@ export const usePlaneDetection = (() => {
     sc.add(controller);
 
     reticle = new THREE.Mesh(
-      new THREE.RingGeometry(0.15, 1, 32).rotateX(-Math.PI / 2),
-      new THREE.MeshBasicMaterial()
+      new THREE.RingGeometry(0.15, 0.2, 48).rotateX(-Math.PI / 2),
+      new THREE.MeshBasicMaterial({ color: 0x08abff })
     );
     reticle.matrixAutoUpdate = false;
     reticle.visible = false;
