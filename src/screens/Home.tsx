@@ -39,19 +39,21 @@ export default function Home() {
     }
   }, []);
   const startSession = () => {
-    if (arSupported && currentSession === undefined) {
-      sessionInit.domOverlay = { root: overlay.current! };
-      (navigator as any).xr
-        .requestSession("immersive-ar", sessionInit)
-        .then(async (session: any) => {
-          clearChildren();
-          setCurrentSession(undefined);
-          overlay.current!.classList.toggle("hidden");
-          renderer!.xr.setReferenceSpaceType("local");
-          setOverlayShown(true);
-          setCurrentSession(session);
-          await renderer!.xr.setSession(session);
-        });
+    if (browserName == "Chrome") {
+      if (arSupported && currentSession === undefined) {
+        sessionInit.domOverlay = { root: overlay.current! };
+        (navigator as any).xr
+          .requestSession("immersive-ar", sessionInit)
+          .then(async (session: any) => {
+            clearChildren();
+            setCurrentSession(undefined);
+            overlay.current!.classList.toggle("hidden");
+            renderer!.xr.setReferenceSpaceType("local");
+            setOverlayShown(true);
+            setCurrentSession(session);
+            await renderer!.xr.setSession(session);
+          });
+      }
     }
   };
 
