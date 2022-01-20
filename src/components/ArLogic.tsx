@@ -49,7 +49,7 @@ export const usePlaneDetection = (() => {
     }
   };
 
-  const initScene = (model: Object3D) => {
+  const initScene = () => {
     const container = document.createElement("div");
     arContainer = container;
     container.classList.toggle("test");
@@ -70,39 +70,26 @@ export const usePlaneDetection = (() => {
     x.xr.enabled = true;
     // Add dragcontrols to the model
 
-    model.position.set(0, -0.5, -1);
-    model.scale.set(0.1, 0.1, 0.1);
-    model.userData.name = "model";
-    model.userData.dragable = true;
-    // console.log(model);
-
-    sc.add(model);
-    // const geometry = new THREE.CylinderGeometry(0.1, 5, 0.2, 32).translate(
-    //   0,
-    //   0.1,
-    //   0
-    // );
     const loader = new GLTFLoader();
     let customModel;
     loader.load("test2/scene.gltf", (gltf) => {
-      const mesh = gltf.scene.children[0];
+      //AnimationMixer look it up
+      // customModel = new THREE.AnimationMixer(gltf.scene);
+      // let action = customModel.clipAction(gltf.animations[0]);
+      // action.play();
+      // gltf.scene.add(customModel);
+      // ////////////
+      gltf.scene.scale.multiplyScalar(2);
+      gltf.scene.position.x = 20; // once rescaled, position the model where needed
+      gltf.scene.position.z = -20;
       customModel = gltf.scene;
-      // reticle.visible = false;
-      gltf.scene.add(customModel);
-      // mesh.add(gltf.scene);
+      // gltf.scene.add(customModel);
     });
 
     const onSelect = () => {
       if (reticle.visible) {
-        const material = new THREE.MeshPhongMaterial({
-          color: 0xffffff * Math.random(),
-        });
-
-        customModel.scale.y = Math.random() * 2 + 1;
         customModel.position.setFromMatrixPosition(reticle.matrix);
         scene!.add(customModel);
-        // scene!.getObjectByName("model");
-        // model.position.setFromMatrixPosition(reticle.matrix);
       }
     };
     let controller = x.xr.getController(0);
@@ -172,15 +159,13 @@ export const usePlaneDetection = (() => {
     return x;
   };
 
-  const createSessionIfSupported = (
-    model: THREE.Object3D
-  ): Promise<THREE.WebGLRenderer> => {
+  const createSessionIfSupported = (): any => {
     return new Promise(async (resolve, reject) => {
       try {
         clearChildren();
         let supported = await isARSupported();
         if (supported) {
-          const renderer = initScene(model);
+          const renderer = initScene();
           resolve(renderer);
         }
       } catch (e) {

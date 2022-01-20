@@ -1,18 +1,8 @@
-import { isRenderer } from "@react-three/fiber/dist/declarations/src/core/store";
 import React, { useEffect, useRef, useState } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { usePlaneDetection } from "../components/ArLogic";
 import { browserName } from "react-device-detect";
 
 import Navbar from "../components/nav";
-
-// function App() {
-//   return (
-//     <div>
-//       <ARButton />
-//     </div>
-//   );
-// }
 
 // export default App;
 
@@ -26,13 +16,9 @@ export default function Home() {
 
   // let overlay: any = undefined;
   const overlay = useRef<HTMLDivElement>(null);
-  const {
-    createSessionIfSupported,
-    getARContainer,
-    clearChildren,
-  } = usePlaneDetection;
+  const { createSessionIfSupported, getARContainer, clearChildren } =
+    usePlaneDetection;
   useEffect(() => {
-    console.log(browserName + " browser");
     if (sessionInit.optionalFeatures === undefined) {
       sessionInit.optionalFeatures = [];
       sessionInit.requiredFeatures = [];
@@ -45,18 +31,10 @@ export default function Home() {
         .isSessionSupported("immersive-ar")
         .then((supported: any) => {
           setArSupported(supported);
-          const loader = new GLTFLoader();
-          loader.load(
-            "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/gltf/SimpleSkinning.gltf",
-            (gltf) => {
-              const mesh = gltf.scene.children[0];
-              createSessionIfSupported(mesh).then((renderer) => {
-                setRenderer(renderer);
-                setContainer(getARContainer());
-              });
-              // mesh.add(gltf.scene);
-            }
-          );
+          createSessionIfSupported().then((renderer) => {
+            setRenderer(renderer);
+            setContainer(getARContainer());
+          });
         });
     }
   }, []);
@@ -70,11 +48,8 @@ export default function Home() {
           setCurrentSession(undefined);
           overlay.current!.classList.toggle("hidden");
           renderer!.xr.setReferenceSpaceType("local");
-          overlay.current!.classList.toggle("test");
-
           setOverlayShown(true);
           setCurrentSession(session);
-
           await renderer!.xr.setSession(session);
         });
     }
@@ -83,6 +58,7 @@ export default function Home() {
   const closeSession = () => {
     window.location.reload();
   };
+
   return (
     <main>
       <div>{browserName}</div>
