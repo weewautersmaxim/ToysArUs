@@ -54,8 +54,12 @@ async function activateXR(actionfigure) {
 
       const session = await navigator.xr.requestSession("immersive-ar", {
         requiredFeatures: ["hit-test"],
-        // optionalFeatures: ["dom-overlay"], ////////////////////////////////////////////////////------------------------------------------------------------------------------------
+        optionalFeatures: ["dom-overlay"],
+        domOverlay: { root: document.getElementById("content") },
       });
+
+      // document.body.appendChild(ARButton.createButton(renderer, session));
+
       session.updateRenderState({
         baseLayer: new XRWebGLLayer(session, gl),
       });
@@ -88,6 +92,7 @@ async function activateXR(actionfigure) {
 
       let customModel;
       // Eventlistener that will wait for a 'tap' of the user. When tapped, custom model loads with animation and get placed on marker location
+      document.getElementById("return-button").style.display = "flex";
       session.addEventListener("select", () => {
         switch (actionfigure) {
           case "01":
@@ -139,7 +144,6 @@ async function activateXR(actionfigure) {
             });
             break;
           case "03":
-            // loader.load("models/Manta/Manta.gltf", function (gltf) {
             loader.load("models/Skeleton/Skeleton.gltf", function (gltf) {
               customModel = gltf.scene;
 

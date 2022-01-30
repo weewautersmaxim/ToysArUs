@@ -161,6 +161,18 @@ h3 {
   object-fit: cover;
 }
 
+#return-button {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 100px;
+  height: 36px;
+  color: black;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
 .c-details {
   color: #2f4c5e;
   padding: 2rem;
