@@ -1,4 +1,4 @@
-async function activateXR() {
+async function activateXR(actionfigure) {
   let supported = false;
   if ("xr" in navigator) {
     supported = await navigator.xr.isSessionSupported("immersive-ar");
@@ -89,28 +89,81 @@ async function activateXR() {
       let customModel;
       // Eventlistener that will wait for a 'tap' of the user. When tapped, custom model loads with animation and get placed on marker location
       session.addEventListener("select", () => {
-        loader.load("models/Demon/Demon.gltf", function (gltf) {
-          customModel = gltf.scene;
+        switch (actionfigure) {
+          case "01":
+            loader.load("models/Demon/Demon.gltf", function (gltf) {
+              customModel = gltf.scene;
 
-          // Scale of model
-          customModel.scale.multiplyScalar(8);
+              // Scale of model
+              customModel.scale.multiplyScalar(2);
 
-          // Copy position marker. Use it for position custom model
-          customModel.position.copy(marker.position);
+              // Copy position marker. Use it for position custom model
+              customModel.position.copy(marker.position);
 
-          // Add rotation to model.
-          customModel.rotation.y += 15;
+              // Add rotation to model.
+              customModel.rotation.y += 15;
 
-          //if model is animated. play animation
-          const animation = gltf.animations[0];
-          const mixer = new THREE.AnimationMixer(customModel);
-          mixers.push(mixer);
+              //if model is animated. play animation
+              const animation = gltf.animations[0];
+              const mixer = new THREE.AnimationMixer(customModel);
+              mixers.push(mixer);
 
-          const action = mixer.clipAction(animation);
-          action.play();
+              const action = mixer.clipAction(animation);
+              action.play();
 
-          scene.add(customModel);
-        });
+              scene.add(customModel);
+            });
+            break;
+          case "02":
+            loader.load("models/Manta/Manta.gltf", function (gltf) {
+              customModel = gltf.scene;
+
+              // Scale of model
+              customModel.scale.multiplyScalar(1 / 25);
+
+              // Copy position marker. Use it for position custom model
+              customModel.position.copy(marker.position);
+
+              // Add rotation to model.
+              customModel.rotation.y += 15;
+
+              //if model is animated. play animation
+              const animation = gltf.animations[0];
+              const mixer = new THREE.AnimationMixer(customModel);
+              mixers.push(mixer);
+
+              const action = mixer.clipAction(animation);
+              action.play();
+
+              scene.add(customModel);
+            });
+            break;
+          case "03":
+            // loader.load("models/Manta/Manta.gltf", function (gltf) {
+            loader.load("models/Skeleton/Skeleton.gltf", function (gltf) {
+              customModel = gltf.scene;
+
+              // Scale of model
+              customModel.scale.multiplyScalar(1 / 25);
+
+              // Copy position marker. Use it for position custom model
+              customModel.position.copy(marker.position);
+
+              // Add rotation to model.
+              customModel.rotation.y += 15;
+
+              //if model is animated. play animation
+              const animation = gltf.animations[0];
+              const mixer = new THREE.AnimationMixer(customModel);
+              mixers.push(mixer);
+
+              const action = mixer.clipAction(animation);
+              action.play();
+
+              scene.add(customModel);
+            });
+            break;
+        }
       });
 
       //----- step 5 -------//
@@ -177,9 +230,14 @@ async function activateXR() {
       }
       session.requestAnimationFrame(onXRFrame);
     } else {
-      alert("WebXR augmented reality is not supported on this device/browser");
+      window.location.href = "arJS.html";
+      window.location.href = "info.html";
     }
   } else {
-    alert("WebXR is not supported on this device/browser");
+    window.location.href = "info.html";
   }
+}
+
+function arJS() {
+  window.location.href = "arJS.html";
 }

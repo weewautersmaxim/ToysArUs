@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>ToysArUs</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main class="c-container c-view">
+      <div class="navbar c-nav">
+        <span>Toys "AR" Us</span>
+        <ul class="navbarNav">
+          <li class="navItem">About</li>
+          <li class="navItem">Contact</li>
+        </ul>
+      </div>
+      <div class="c-info-page">
+        <h1>Your Browser/device doesn't support WebXR</h1>
+        <p class="c-info-p">
+          Your browser/device doesn't support the necessary modules for
+          hitscanning technologie but there is an alternative. Scan this
+          <a download="howest.jpg" href="./images/Logo-howest.jpg">Image</a>
+          with your camera and view your model in Augemented reality. This
+          technologie works on every mayor browser and even desktop.
+        </p>
+        <button class="c-info-btn" onclick="{arJS()}">View in AR</button>
+      </div>
+    </main>
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -15,8 +15,6 @@
     <script src="js/GLTFLoader.js"></script>
   </head>
   <body>
-    <!-- Starting an immersive WebXR session -->
-    <!-- <button onclick="activateXR()">Start AR</button> -->
     <header class="c-container">
       <div class="navbar c-nav">
         <span>Toys "AR" Us</span>
@@ -24,7 +22,6 @@
           <li class="navItem">About</li>
           <li class="navItem">Contact</li>
         </ul>
-        <!-- <div class="hamburgerIcon active" onclick="setActive(!active)"></div> -->
       </div>
       <section class="c-section">
         <div class="c-section__50">
@@ -90,20 +87,80 @@
         <div class="c-figure">
           <img
             class="c-figure__img"
-            src="./images/action figure.png"
+            src="./images/actionFigure_01.jpg"
             alt="action figure"
           />
         </div>
         <div class="c-details">
           <h4 class="c-details__h4">Pumpkin Man - 17cm Male action figure</h4>
           <p class="c-details__p">
-            Original merchandise from the 1978 tv-show "Pumpkin".
+            Original merchandise from the 1978 tv-show "DemonSlayer".
           </p>
           <p class="c-details__euro">€ 14.98</p>
           <div class="c-buttons">
             <button class="c-buy">Buy product</button>
+            <!-- Starting an immersive WebXR session -->
+            <button onclick="{activateXR('01')}" class="c-ar">
+              watch in AR
+              <img src="./images/ar.svg" alt="Augmented reality" />
+            </button>
 
-            <button onclick="{activateXR()}" class="c-ar">
+            <div ref="{overlay}" class="hidden">
+              <button class="hiddenBtn" onClick="{closeSession}">
+                <img src="./images/close.svg" alt="close" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-figure">
+          <img
+            class="c-figure__img"
+            src="./images/actionFigure_02.jpg"
+            alt="action figure"
+          />
+        </div>
+        <div class="c-details">
+          <h4 class="c-details__h4">Manta Ray - 12cm action figure</h4>
+          <p class="c-details__p">
+            Original merchandise from the 1987 tv-show "Manta".
+          </p>
+          <p class="c-details__euro">€ 18.98</p>
+          <div class="c-buttons">
+            <button class="c-buy">Buy product</button>
+            <!-- Starting an immersive WebXR session -->
+            <button onclick="{activateXR('02')}" class="c-ar">
+              watch in AR
+              <img src="./images/ar.svg" alt="Augmented reality" />
+            </button>
+
+            <div ref="{overlay}" class="hidden">
+              <button class="hiddenBtn" onClick="{closeSession}">
+                <img src="./images/close.svg" alt="close" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-figure">
+          <img
+            class="c-figure__img"
+            src="./images/actionFigure_03.jpg"
+            alt="action figure"
+          />
+        </div>
+        <div class="c-details">
+          <h4 class="c-details__h4">Manta Ray - 12cm action figure</h4>
+          <p class="c-details__p">
+            Original merchandise from the 1987 tv-show "Manta".
+          </p>
+          <p class="c-details__euro">€ 18.98</p>
+          <div class="c-buttons">
+            <button class="c-buy">Buy product</button>
+            <!-- Starting an immersive WebXR session -->
+            <button onclick="{activateXR('03')}" class="c-ar">
               watch in AR
               <img src="./images/ar.svg" alt="Augmented reality" />
             </button>
