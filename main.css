@@ -161,6 +161,17 @@ h3 {
   object-fit: cover;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+.link-btn {
+  color: #2f4c5e;
+  text-decoration: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 #return-button {
   position: absolute;
   top: 60px;
