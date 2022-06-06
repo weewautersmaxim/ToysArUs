@@ -9,13 +9,14 @@
 
 <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
     <a-assets>
-	    <a-asset-item id="avatarModel" src="./models/Demon/Demon.gltf"></a-asset-item>
+	    <a-gltf-model id="avatarModel" src="./models/Demon/Demon.gltf"></a-gltf-model>
 	</a-assets>
     <a-marker type="pattern" url="data/howest.patt">
-
-        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="32 32 32" src="#avatarModel" animation-mixer animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"  animation__rotate = "property: rotation; dur: 8000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="32 32 32" src="#avatarModel" animation-mixer 
+            animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"  
+            animation__rotate = "property: rotation; dur: 8000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
     </a-marker>
-    <a-entity camera gltf-model="#avatarModel" ></a-entity>    
+    <a-entity camera gltf-model="#avatarModel"></a-entity>    
 </a-scene>
 </body>
 </html>
