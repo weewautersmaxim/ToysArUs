@@ -58,8 +58,6 @@ async function activateXR(actionfigure) {
         domOverlay: { root: document.getElementById("content") },
       });
 
-      // document.body.appendChild(ARButton.createButton(renderer, session));
-
       session.updateRenderState({
         baseLayer: new XRWebGLLayer(session, gl),
       });
@@ -75,7 +73,7 @@ async function activateXR(actionfigure) {
       const hitTestSource = await session.requestHitTestSource({
         space: viewerSpace,
       });
-
+      //----- step 5 -------//
       //Use the model loader from js/GLTFLoader.js to load a marker for the hitscanning. We will be using this same loader for the custom models later.
       const loader = new THREE.GLTFLoader();
 
@@ -170,10 +168,10 @@ async function activateXR(actionfigure) {
         }
       });
 
-      //----- step 5 -------//
+      //----- step 6 -------//
       // Create a render loop that allows us to draw on the AR view.
 
-      const onXRFrame = (time, frame) => {
+      const onXRFrame = (frame) => {
         // Queue up the next draw request.
         session.requestAnimationFrame(onXRFrame);
 
@@ -215,7 +213,7 @@ async function activateXR(actionfigure) {
         }
       };
 
-      //----- step 6 -------//
+      //----- step 7 -------//
       // Use setAnimationLoop for webXR projects (instead of requestAnimationFrame)
 
       renderer.setAnimationLoop(() => {
